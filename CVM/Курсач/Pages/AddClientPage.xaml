@@ -1,0 +1,183 @@
+﻿<Page x:Class="Курсач.Pages.AddClientPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:Курсач.Pages"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+      Title="AddClientPage">
+
+    <Grid PreviewDrop="Grid_PreviewDrop"  AllowDrop="True">
+        <Viewbox>
+            <ScrollViewer Height="300" Width="560">
+                <StackPanel Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="5">
+                    <StackPanel Orientation="Horizontal" Margin="5,20,5,5">
+                        <TextBlock Text="Общие данные" FontWeight="Bold" Margin="215,5"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Margin="5">
+                        <Image x:Name="ImageBox" MouseUp="ImageBox_MouseUp" Margin="210,5" Width="100" Source="{Binding }"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Margin="5">
+                        <TextBox x:Name="LNBox" Style="{StaticResource MaterialDesignTextBox}" Width="100" Margin="10"
+                                 materialDesign:HintAssist.HelperText="Фамилия" MaxLength="30" Text="{Binding ClientLN}"/>
+                        <TextBox x:Name="FNBox" Style="{StaticResource MaterialDesignTextBox}" Width="100" Margin="10"
+                                 materialDesign:HintAssist.HelperText="Имя" MaxLength="30" Text="{Binding ClientFN}"/>
+                        <TextBox x:Name="PatronimicBox" Style="{StaticResource MaterialDesignTextBox}" Width="100"
+                                 Text="{Binding ClientPatronomic}"
+                             Margin="10" materialDesign:HintAssist.HelperText="Отчество" MaxLength="30"/>
+                        <TextBox x:Name="PhoneBox" Style="{StaticResource MaterialDesignTextBox}" 
+                                 Width="100" Margin="10" Text="{Binding ClientPhone}"
+                                 PreviewTextInput="PhoneBox_PreviewTextInput"
+                                 materialDesign:HintAssist.HelperText="Телефон" MaxLength="11"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Margin="5,20,5,5">
+                        <TextBox x:Name="EmailBox" Style="{StaticResource MaterialDesignTextBox}" Width="90" 
+                                 Margin="10"
+                                 materialDesign:HintAssist.HelperText="Эл. почта" MaxLength="60" Text="{Binding Email}"/>
+                        <DatePicker
+                            Width="140" Margin="5"  x:Name="HBBox" SelectedDate="{Binding ClientHB}"
+                            materialDesign:HintAssist.Hint="Дата рождения" Language="ru-RU"
+                            Style="{StaticResource MaterialDesignOutlinedDatePicker}" />
+                        <TextBox x:Name="AddressBox" Style="{StaticResource MaterialDesignTextBox}" Width="90" 
+                                 Margin="10"
+                                 materialDesign:HintAssist.HelperText="Адрес" MaxLength="60" Text="{Binding ClientAddress}"/>
+                        <TextBox x:Name="WorkBox" Style="{StaticResource MaterialDesignTextBox}" Width="90" 
+                                 Text="{Binding ClientWorkPlaceAndPost}"
+                             Margin="10" materialDesign:HintAssist.HelperText="Работа" MaxLength="90"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Margin="5">
+                        <ComboBox materialDesign:HintAssist.Hint="Семейное положение" Width="145" Margin="10"
+                                  materialDesign:HintAssist.HintOpacity=".26" x:Name="FamilyBox"
+                                  IsEditable="True" DisplayMemberPath="Position" 
+                                  SelectedItem="{Binding FamilyPosition}"/>
+                        <ComboBox materialDesign:HintAssist.Hint="Образование" Width="145" Margin="10"
+                                  materialDesign:HintAssist.HintOpacity=".26" x:Name="EducationBox"
+                                  IsEditable="True" DisplayMemberPath="Education1" SelectedItem="{Binding Education}"/>
+                        <ComboBox materialDesign:HintAssist.Hint="Занятость" Width="145" Margin="10"
+                                  materialDesign:HintAssist.HintOpacity=".26" x:Name="BusyBox"
+                                  IsEditable="True" DisplayMemberPath="Busyness1" SelectedItem="{Binding Busyness}"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Margin="5">
+                        <ComboBox materialDesign:HintAssist.Hint="Группа крови" x:Name="GroupBloodBox"
+                                  materialDesign:HintAssist.HintOpacity=".26" Margin="10"
+                                  IsEditable="True" SelectedIndex="{Binding GroupBlood}"/>
+                        <TextBlock Text="Пол: " Margin="5,20,0,20"/>
+                        <ToggleButton materialDesign:ToggleButtonAssist.OnContent="М" IsChecked="{Binding ClientGender}"
+                                      Content="Ж" Margin="5,10,10,10" x:Name="GenderBox" 
+                                      FontSize="10" Height="20" Width="20"
+                                      Style="{StaticResource MaterialDesignActionToggleButton}"
+                                      ToolTip="MaterialDesignActionLightToggleButton" />
+                        <TextBlock Text="Rh: " Margin="10,20,0,20"/>
+                        <ToggleButton materialDesign:ToggleButtonAssist.OnContent="-" x:Name="RHBox"
+                                      Content="+" Margin="5,10,10,10" IsChecked="{Binding ClientRh_}"
+                                      Style="{StaticResource MaterialDesignActionToggleButton}"
+                                      FontSize="10" Height="20" Width="20"
+                                      ToolTip="MaterialDesignActionLightToggleButton" />
+                        <TextBox x:Name="AlergiBox" Style="{StaticResource MaterialDesignTextBox}" Width="250"
+                             Margin="0,10" materialDesign:HintAssist.HelperText="Аллергические реакции" Text="{Binding Allergy}"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Margin="5,20,5,5">
+                        <TextBlock Text="Паспортные данные" FontWeight="Bold" Margin="200,5"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Margin="5">
+                        <TextBox x:Name="PassportSeryBox" Style="{StaticResource MaterialDesignTextBox}"
+                                 Width="100" Margin="10" PreviewTextInput="PhoneBox_PreviewTextInput"
+                                 materialDesign:HintAssist.HelperText="Серия" MaxLength="4"/>
+                        <TextBox x:Name="PassportNumberBox" Style="{StaticResource MaterialDesignTextBox}" 
+                                 Width="100" Margin="10" PreviewTextInput="PhoneBox_PreviewTextInput"
+                                 materialDesign:HintAssist.HelperText="Номер" MaxLength="6"/>
+                        <TextBox x:Name="PassportWhoBox" Style="{StaticResource MaterialDesignTextBox}" Width="100"
+                             Margin="10" materialDesign:HintAssist.HelperText="Кем выдан" MaxLength="90"
+                                 Text="{Binding Passport.PassportWho}"/>
+                        <DatePicker
+                            Width="140" Margin="5" SelectedDate="{Binding Passport.PassportDate}" Language="ru-RU"
+                            materialDesign:HintAssist.Hint="Когда выдан" x:Name="PassportDateBox"
+                            Style="{StaticResource MaterialDesignOutlinedDatePicker}" />
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Margin="5,20,5,5">
+                        <TextBlock Text="Страхование" FontWeight="Bold" Margin="210,5"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Margin="5">
+                        <TextBox x:Name="PolysSeryBox" Style="{StaticResource MaterialDesignTextBox}" Width="100" 
+                                 Margin="10" PreviewTextInput="PhoneBox_PreviewTextInput"
+                                 materialDesign:HintAssist.HelperText="Серия" MaxLength="4" 
+                                 Text="{Binding Polis.PolisSeries}"/>
+                        <TextBox x:Name="PolysNumberBox" Style="{StaticResource MaterialDesignTextBox}" Width="100" 
+                                 Margin="10" PreviewTextInput="PhoneBox_PreviewTextInput"
+                                 materialDesign:HintAssist.HelperText="Номер" MaxLength="10" 
+                                 Text="{Binding Polis.PolisNumber}"/>
+                        <TextBox x:Name="SnilsNumberBox" Style="{StaticResource MaterialDesignTextBox}" Width="100" 
+                                 Margin="10" PreviewTextInput="PhoneBox_PreviewTextInput"
+                                 materialDesign:HintAssist.HelperText="Снилс" MaxLength="13" 
+                                 Text="{Binding ClientSnils}"/>
+                        <ComboBox materialDesign:HintAssist.Hint="Организация" x:Name="InsuranceBox" Width="112"
+                                  materialDesign:HintAssist.HintOpacity=".26" Margin="10"
+                                  SelectedItem="{Binding Insurance}"
+                                  IsEditable="True" DisplayMemberPath="InsuranceName"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Margin="5,20,5,5">
+                        <TextBlock Text="Льготы" FontWeight="Bold" Margin="225,5"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Margin="5">
+                        <TextBox x:Name="PrivilegesSeryBox" Style="{StaticResource MaterialDesignTextBox}" Width="145" 
+                                 Margin="10" PreviewTextInput="PhoneBox_PreviewTextInput"
+                                 materialDesign:HintAssist.HelperText="Серия" MaxLength="4" 
+                                 Text="{Binding Benefits.BemnefitsDocSeries}"/>
+                        <TextBox x:Name="PrivilegesNumberBox" Style="{StaticResource MaterialDesignTextBox}" Width="145"
+                                 Margin="10" PreviewTextInput="PhoneBox_PreviewTextInput"
+                                 materialDesign:HintAssist.HelperText="Номер" MaxLength="6" 
+                                 Text="{Binding Benefits.BenefitsDocNumber}"/>
+                        <ComboBox materialDesign:HintAssist.Hint="Категория" Width="145" x:Name="PrivilegesBox"
+                                  materialDesign:HintAssist.HintOpacity=".26" Margin="10" 
+                                  SelectedItem="{Binding Benefits.BenefitsCategory}"
+                                  IsEditable="True" DisplayMemberPath="BCDescription"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal">
+                        <CheckBox Content="Нуждается в опекуне" Style="{StaticResource MaterialDesignCheckBox}" x:Name="GuarCheckBox"
+                                  Checked="CheckBox_Checked" Unchecked="CheckBox_Unchecked" Margin="180,20"/>
+                    </StackPanel>
+                    <StackPanel x:Name="GuardianBox" Orientation="Vertical" Visibility="Collapsed">
+                        <StackPanel Orientation="Horizontal" Margin="5">
+                            <TextBlock Text="Данные опекуна" FontWeight="Bold" Margin="200,5"/>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" Margin="5">
+                            <TextBox x:Name="GuardianNameBox" Style="{StaticResource MaterialDesignTextBox}" Width="100" Margin="10"
+                                 materialDesign:HintAssist.HelperText="ФИО" MaxLength="30" Text="{Binding GuardianFullName}"/>
+                            <TextBox x:Name="GuardianAddresBox" Style="{StaticResource MaterialDesignTextBox}" Width="100" Margin="10"
+                                 materialDesign:HintAssist.HelperText="Адрес" MaxLength="30" Text="{Binding GuardianAddress}"/>
+                            <TextBox x:Name="GuardianPhoneBox" Style="{StaticResource MaterialDesignTextBox}" Width="100"
+                                 Text="{Binding GuardianPhone}" PreviewTextInput="PhoneBox_PreviewTextInput"
+                                 Margin="10" materialDesign:HintAssist.HelperText="Телефон" MaxLength="11"/>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" Margin="5">
+                            <TextBlock Text="Паспортные данные опекуна" FontWeight="Bold" Margin="200,5"/>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" Margin="5">
+                            <TextBox x:Name="GuardianPassportSeryBox" Style="{StaticResource MaterialDesignTextBox}"
+                                 Width="100" Margin="10" PreviewTextInput="PhoneBox_PreviewTextInput"
+                                 materialDesign:HintAssist.HelperText="Серия" MaxLength="4"
+                                 Text="{Binding GuardianPassport.PassportSeria}"/>
+                            <TextBox x:Name="GuardianPassportNumberBox" Style="{StaticResource MaterialDesignTextBox}" 
+                                 Width="100" Margin="10" PreviewTextInput="PhoneBox_PreviewTextInput"
+                                 materialDesign:HintAssist.HelperText="Номер" MaxLength="6" 
+                                 Text="{Binding GuardianPassport.PassportNumber}"/>
+                            <TextBox x:Name="GuardianPassportWhoBox" Style="{StaticResource MaterialDesignTextBox}" Width="100"
+                             Margin="10" materialDesign:HintAssist.HelperText="Кем выдан" MaxLength="90"
+                                 Text="{Binding GuardianPassport.PassportWho}"/>
+                            <DatePicker
+                            Width="140" Margin="5" SelectedDate="{Binding GuardianPassport.PassportDate}" Language="ru-RU"
+                            materialDesign:HintAssist.Hint="Когда выдан" x:Name="GuardianPassportDateBox"
+                            Style="{StaticResource MaterialDesignOutlinedDatePicker}" />
+                        </StackPanel>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal">
+                        <Button x:Name="SaveButton" Click="SaveButton_Click" 
+                                Content="Сохранить" Margin="205,10" Cursor="Hand"/>
+                    </StackPanel>
+                </StackPanel>
+            </ScrollViewer>
+        </Viewbox>
+    </Grid>
+</Page>

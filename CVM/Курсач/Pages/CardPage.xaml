@@ -1,0 +1,109 @@
+﻿<Page x:Class="Курсач.Pages.CardPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:Курсач.Pages"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+      Loaded="Page_Loaded"
+      Title="CardPage">
+
+    <Grid>
+        <Viewbox>
+            <StackPanel Orientation="Vertical">
+                <TextBlock Text="Основное заболевание" FontWeight="Bold" Margin="10" Width="200"/>
+                <StackPanel Orientation="Horizontal">
+                    <ComboBox materialDesign:HintAssist.Hint="Диагноз" Width="300" Margin="10"
+                              materialDesign:HintAssist.HintOpacity=".26" x:Name="DesiaseBox"
+                              IsEditable="True" DisplayMemberPath="DesiaseName" 
+                              SelectedItem="{Binding Desiase}"/>
+                    <DatePicker Margin="10"  x:Name="DateEndBox" SelectedDate="{Binding CardDateEnd}"
+                        materialDesign:HintAssist.Hint="Конец наблюдения" Language="ru-RU" Width="300"
+                        Style="{StaticResource MaterialDesignOutlinedDatePicker}" />
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <TextBox Margin="10" Width="300" x:Name="ComplaintsBox" MaxLength="150" 
+                             Style="{StaticResource MaterialDesignTextBox}" Text="{Binding ClientComplaints}"
+                             materialDesign:HintAssist.HelperText="Жалобы"/>
+                    <TextBox Margin="10" Width="300" x:Name="AnamnesisBox" MaxLength="150" 
+                             Style="{StaticResource MaterialDesignTextBox}" Text="{Binding ClientAnamnesis}"
+                             materialDesign:HintAssist.HelperText="Анамнезис"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <TextBox Margin="10" Width="300" x:Name="ObjectiveBox" MaxLength="150" 
+                             Style="{StaticResource MaterialDesignTextBox}" Text="{Binding ClientObjectiveData}"
+                             materialDesign:HintAssist.HelperText="Объективные данные"/>
+                    <TextBox Margin="10" Width="300" x:Name="HardersBox" MaxLength="150" 
+                             Style="{StaticResource MaterialDesignTextBox}" Text="{Binding ClientHarders}"
+                             materialDesign:HintAssist.HelperText="Осложнения"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <TextBox Margin="10" Width="200" x:Name="ReasonBox" MaxLength="150" 
+                             Style="{StaticResource MaterialDesignTextBox}" Text="{Binding ClientReason}"
+                             materialDesign:HintAssist.HelperText="Причина"/>
+                    <TextBlock Text="Диспансеризация: " Margin="5,15,0,15"/>
+                    <ToggleButton materialDesign:ToggleButtonAssist.OnContent="Да" IsChecked="{Binding ClientLook}"
+                                      Content="Нет" Margin="5" x:Name="GenderBox" 
+                                      FontSize="10" Height="30" Width="30"
+                                      Style="{StaticResource MaterialDesignActionToggleButton}"
+                                      ToolTip="MaterialDesignActionLightToggleButton" />
+                    <ComboBox materialDesign:HintAssist.Hint="Группа здоровья" x:Name="GroupBox"
+                                  materialDesign:HintAssist.HintOpacity=".26" Margin="10"
+                                  IsEditable="True" SelectedIndex="{Binding ClientHealthGroup}"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <StackPanel Margin="50,0">
+                        <TextBlock Text="Сопутствующие заболевания" FontWeight="Bold" Margin="10" Width="200"/>
+                        <StackPanel>
+                            <ListView x:Name="DopDesiaseListView" Height="70" Width="250">
+                                <ListView.ItemTemplate>
+                                    <DataTemplate>
+                                        <StackPanel>
+                                            <TextBlock Text="{Binding Desiase.DesiaseName}"/>
+                                        </StackPanel>
+                                    </DataTemplate>
+                                </ListView.ItemTemplate>
+                            </ListView>
+                        </StackPanel>
+                        <StackPanel.ContextMenu>
+                        <ContextMenu>
+                            <MenuItem Header="Добавить" Click="MenuItem_Click"/>
+                        </ContextMenu>
+                    </StackPanel.ContextMenu>
+                    </StackPanel>
+                    <StackPanel>
+                        <TextBlock Text="Назначенные упражнения" FontWeight="Bold" Margin="10" Width="200"/>
+                        <StackPanel>
+                            <ListView x:Name="ExercisesListView" Height="70" Width="250">
+                                <ListView.ItemTemplate>
+                                    <DataTemplate>
+                                        <StackPanel Orientation="Horizontal">
+                                            <TextBlock Text="{Binding Exercises.ExercisesName}"/>
+                                            <TextBlock Text="{Binding Quantity}" Margin="10,0"/>
+                                            <StackPanel.ContextMenu>
+                                                <ContextMenu>
+                                                    <MenuItem Header="Добавить" Click="MenuItem_Click_1"/>
+                                                    <MenuItem Header="Удалить" Click="MenuItem_Click_2"/>
+                                                    <MenuItem Header="Редактировать" Click="MenuItem_Click_3"/>
+                                                </ContextMenu>
+                                            </StackPanel.ContextMenu>
+                                        </StackPanel>
+                                    </DataTemplate>
+                                </ListView.ItemTemplate>
+                                <ListView.ContextMenu>
+                                <ContextMenu>
+                                        <MenuItem Header="Добавить" Click="MenuItem_Click_1"/>
+                                    </ContextMenu>
+                                </ListView.ContextMenu>
+                            </ListView>
+                        </StackPanel>
+                    </StackPanel>
+                </StackPanel>
+                <Button x:Name="SaveButton" Click="SaveButton_Click" Width="150" 
+                            Content="Сохранить" Margin="10" Cursor="Hand"/>
+            </StackPanel>
+        </Viewbox>
+    </Grid>
+</Page>
