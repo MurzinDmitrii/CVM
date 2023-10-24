@@ -1,0 +1,26 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="CVMModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="MobileClientView">
+    <Key>
+      <PropertyRef Name="ClientId" />
+    </Key>
+    <Property Name="ClientId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ClientFullName" Type="String" MaxLength="92" FixedLength="false" Unicode="true" />
+    <Property Name="ClientGender" Type="Boolean" />
+    <Property Name="Photo" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="MobileExercisesView">
+    <Key>
+      <PropertyRef Name="ClientId" />
+      <PropertyRef Name="ExercisesName" />
+      <PropertyRef Name="Quantity" />
+    </Key>
+    <Property Name="ClientId" Type="Int32" Nullable="false" />
+    <Property Name="ExercisesName" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Quantity" Type="Int32" Nullable="false" />
+  </EntityType>
+  <EntityContainer Name="CVMEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="MobileClientView" EntityType="Self.MobileClientView" />
+    <EntitySet Name="MobileExercisesView" EntityType="Self.MobileExercisesView" />
+  </EntityContainer>
+</Schema>

@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="Хранилище CVMModelContainer" CdmEntityContainer="CVMEntities">
+    <EntitySetMapping Name="MobileClientView">
+      <EntityTypeMapping TypeName="CVMModel.MobileClientView">
+        <MappingFragment StoreEntitySet="MobileClientView">
+          <ScalarProperty Name="ClientId" ColumnName="ClientId" />
+          <ScalarProperty Name="ClientFullName" ColumnName="ClientFullName" />
+          <ScalarProperty Name="ClientGender" ColumnName="ClientGender" />
+          <ScalarProperty Name="Photo" ColumnName="Photo" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="MobileExercisesView">
+      <EntityTypeMapping TypeName="CVMModel.MobileExercisesView">
+        <MappingFragment StoreEntitySet="MobileExercisesView">
+          <ScalarProperty Name="ClientId" ColumnName="ClientId" />
+          <ScalarProperty Name="ExercisesName" ColumnName="ExercisesName" />
+          <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>
